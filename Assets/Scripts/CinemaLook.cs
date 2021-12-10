@@ -26,8 +26,7 @@ public class CinemaLook : MonoBehaviour
 
     private void Update()
     {
-            cam.m_XAxis.Value += camStick.Horizontal*200 * CamAngleSpeed;
-            cam.m_YAxis.Value += camStick.Vertical*CamAngleSpeed;
+
 
     }
 }

@@ -17,7 +17,6 @@ public class SpawnPlayers : MonoBehaviour
         //PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
 
         GameObject temp = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-        temp.GetComponent<Move>().Bruh();
         if (temp.GetComponent<PhotonView>().IsMine) {
             temp.GetComponent<Move>().SetJoysticks(Instantiate(cameraPrefab, randomPosition, Quaternion.identity));
         }

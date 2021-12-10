@@ -37,6 +37,8 @@ public class Move : MonoBehaviour
         cam.position = transform.position + Quaternion.AngleAxis(CamAngle, Vector3.up) * new Vector3(0, 3.54f, -9.4f);
         cam.rotation = Quaternion.LookRotation(transform.position + Vector3.up * 2f - cam.position, Vector3.up);
 
+        cin.m_XAxis.Value += camStick.Horizontal * CamAngleSpeed;
+        cin.m_YAxis.Value += camStick.Vertical * (float)(CamAngleSpeed*0.01);
 
     }
     // Start is called before the first frame update
@@ -82,10 +84,10 @@ public class Move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(direction.magnitude>=0.1f)
+        if (direction.magnitude >= 0.1f)
             rb.velocity = moveDir * movespeed;//new Vector3(dirX*moveDir.normalized.x *joystick.Horizontal,0, dirZ*moveDir.normalized.z*joystick.Vertical);//(dirX, rb.velocity.y, dirZ);
         else
-            rb.velocity= new Vector3(dirX, rb.velocity.y, dirZ);
+            rb.velocity = new Vector3(dirX, rb.velocity.y, dirZ);
     }
 
 
@@ -113,6 +115,10 @@ public class Move : MonoBehaviour
                 camStick = temp;
         }
         cam = camera.transform;
+
+        cin =cam.GetComponentInChildren<CinemachineFreeLook>();
+        cin.Follow = GameObject.FindWithTag("Player").transform;
+        cin.LookAt = GameObject.Find("Neck").transform;
     }
     public void Bruh()
     {
